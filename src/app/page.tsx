@@ -1,103 +1,357 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import ProjectsSection from "@/components/ProjectsSection";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-white dark:bg-black">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-800/20 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div className="text-xl font-semibold text-gray-900 dark:text-white">
+              Timothy Timbol
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a
+                href="#work"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Work
+              </a>
+              <a
+                href="#about"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="#skills"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Skills
+              </a>
+              <a
+                href="#contact"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-5xl md:text-7xl font-light text-gray-900 dark:text-white mb-6 tracking-tight">
+            Hello, I'm{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Timothy Timbol
+            </span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            A passionate developer creating beautiful digital experiences with
+            clean code and thoughtful design.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="#work"
+              className="bg-black dark:bg-white text-white dark:text-black px-8 py-3 rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-200 hover:scale-105"
+            >
+              View My Work
+            </a>
+            <a
+              href="#contact"
+              className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white px-8 py-3 rounded-full font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200"
+            >
+              Get In Touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Work Section */}
+      <ProjectsSection />
+
+      {/* About Section */}
+      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-950" id="about">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8">
+            About Me
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-12">
+            I'm a developer who believes in the power of clean, efficient code
+            and beautiful design. With expertise in modern web technologies, I
+            create digital experiences that are both functional and delightful
+            to use.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                <span className="text-white text-xl">💻</span>
+              </div>
+              <h3 className="font-medium text-gray-900 dark:text-white mb-2">
+                Development
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
+                Modern web technologies
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                <span className="text-white text-xl">🎨</span>
+              </div>
+              <h3 className="font-medium text-gray-900 dark:text-white mb-2">
+                Design
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
+                Clean and intuitive interfaces
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                <span className="text-white text-xl">⚡</span>
+              </div>
+              <h3 className="font-medium text-gray-900 dark:text-white mb-2">
+                Performance
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
+                Fast and optimized solutions
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="py-20 px-6" id="skills">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8">
+              Technologies I Work With
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              I stay up-to-date with the latest technologies to deliver modern,
+              scalable solutions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {/* Frontend */}
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-blue-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                <span className="text-white font-bold">⚛️</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                React
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Modern UI library
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-700 transition-colors">
+                <span className="text-white font-bold">TS</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                TypeScript
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Type-safe JavaScript
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-black dark:hover:border-white transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-black dark:bg-white rounded-xl mb-4 flex items-center justify-center group-hover:bg-gray-800 dark:group-hover:bg-gray-200 transition-colors">
+                <span className="text-white dark:text-black font-bold">▲</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                Next.js
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                React framework
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-blue-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                <span className="text-white font-bold">RN</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                React Native
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Mobile development
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-cyan-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-cyan-600 transition-colors">
+                <span className="text-white font-bold">🎨</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                Tailwind CSS
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Utility-first CSS
+              </p>
+            </div>
+
+            {/* Backend & Database */}
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-green-600 rounded-xl mb-4 flex items-center justify-center group-hover:bg-green-700 transition-colors">
+                <span className="text-white font-bold">⚡</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                Supabase
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Backend as a service
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-orange-300 dark:hover:border-orange-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-orange-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-orange-600 transition-colors">
+                <span className="text-white font-bold">🔥</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                Firebase
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Google's platform
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-yellow-300 dark:hover:border-yellow-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-yellow-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-yellow-600 transition-colors">
+                <span className="text-white font-bold">☁️</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                AWS
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Cloud computing
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-blue-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                <span className="text-white font-bold">GCP</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                Google Cloud
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Cloud platform
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-green-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-green-600 transition-colors">
+                <span className="text-white font-bold">⚙️</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                Node.js
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Backend runtime
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-700 transition-colors">
+                <span className="text-white font-bold">SQL</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                SQL
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Relational databases
+              </p>
+            </div>
+
+            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-purple-300 dark:hover:border-purple-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <div className="w-12 h-12 bg-purple-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-purple-600 transition-colors">
+                <span className="text-white font-bold">📄</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                NoSQL
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Document databases
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 px-6" id="contact">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8">
+            Let's Work Together
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-12">
+            Have a project in mind? I'd love to hear about it and discuss how we
+            can bring your ideas to life.
+          </p>
+          <button
+            onClick={() => setIsContactFormOpen(true)}
+            className="bg-black dark:bg-white text-white dark:text-black px-8 py-3 rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-200 hover:scale-105"
+          >
+            Start a Conversation
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-600 dark:text-gray-300 mb-4 md:mb-0">
+              © 2025 Your Name. All rights reserved.
+            </div>
+            <div className="flex space-x-6">
+              <a
+                href="https://github.com/Sage4tk#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/timothy-zack-timbol-90b5271b6/#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://www.instagram.com/cactusz4ck"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
       </footer>
+
+      {/* Contact Form Modal */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+      />
     </div>
   );
 }
