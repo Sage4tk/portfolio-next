@@ -231,10 +231,33 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
       </main>
 
       {/* Contact Form Modal */}
-      <ContactForm
-        isOpen={isContactFormOpen}
-        onClose={() => setIsContactFormOpen(false)}
-      />
+      {isContactFormOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <button
+                onClick={() => setIsContactFormOpen(false)}
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 float-right"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,50 +1,18 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { getFeaturedProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function ProjectsSection() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
+// Server component that fetches and caches featured projects
+export default async function ProjectsSection() {
+  let projects: Project[];
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  const fetchProjects = async () => {
-    try {
-      const projectList = await getFeaturedProjects();
-      setProjects(projectList); // Show all featured projects
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <section className="py-20 px-6" id="work">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-16 text-center">
-            Featured Work
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="animate-pulse">
-                <div className="bg-gray-200 dark:bg-gray-800 rounded-2xl h-64 mb-6"></div>
-                <div className="bg-gray-200 dark:bg-gray-800 rounded h-6 mb-2"></div>
-                <div className="bg-gray-200 dark:bg-gray-800 rounded h-4"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
+  try {
+    // Fetch featured projects
+    projects = await getFeaturedProjects();
+  } catch (error) {
+    console.error("Error fetching featured projects:", error);
+    projects = [];
   }
 
   if (projects.length === 0) {
@@ -91,10 +59,10 @@ export default function ProjectsSection() {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <div
+            <Link
               key={project.id}
+              href={`/projects/${project.id}`}
               className="group cursor-pointer"
-              onClick={() => router.push(`/projects/${project.id}`)}
             >
               <div className="bg-gray-100 dark:bg-gray-900 rounded-2xl overflow-hidden h-64 mb-6 transition-all duration-300 group-hover:scale-105">
                 {project.imageUrl ? (
@@ -121,7 +89,7 @@ export default function ProjectsSection() {
 
               {/* Tech Stack */}
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.techStack.slice(0, 3).map((tech) => (
+                {project.techStack.slice(0, 3).map((tech: string) => (
                   <span
                     key={tech}
                     className="px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-full"
@@ -153,14 +121,14 @@ export default function ProjectsSection() {
                   />
                 </svg>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         {/* View All Projects Link */}
         <div className="text-center mt-12">
-          <button
-            onClick={() => router.push("/projects")}
+          <Link
+            href="/projects"
             className="inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
           >
             <span>View All Projects</span>
@@ -177,7 +145,7 @@ export default function ProjectsSection() {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

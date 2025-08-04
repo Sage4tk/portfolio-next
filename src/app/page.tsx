@@ -1,11 +1,12 @@
-"use client";
-
-import { useState } from "react";
+// import { useState } from "react";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactForm from "@/components/ContactForm";
 
-export default function Home() {
-  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+export default function Home({
+  searchParams,
+}: {
+  searchParams: { isOpen?: string };
+}) {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Navigation */}
@@ -301,12 +302,7 @@ export default function Home() {
             Have a project in mind? I'd love to hear about it and discuss how we
             can bring your ideas to life.
           </p>
-          <button
-            onClick={() => setIsContactFormOpen(true)}
-            className="bg-black dark:bg-white text-white dark:text-black px-8 py-3 rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-200 hover:scale-105"
-          >
-            Start a Conversation
-          </button>
+          <ContactForm />
         </div>
       </section>
 
@@ -315,7 +311,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-600 dark:text-gray-300 mb-4 md:mb-0">
-              © 2025 Your Name. All rights reserved.
+              © 2025 Timothy Zack Timbol. All rights reserved.
             </div>
             <div className="flex space-x-6">
               <a
@@ -346,12 +342,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* Contact Form Modal */}
-      <ContactForm
-        isOpen={isContactFormOpen}
-        onClose={() => setIsContactFormOpen(false)}
-      />
     </div>
   );
 }

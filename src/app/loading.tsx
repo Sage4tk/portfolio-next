@@ -17,9 +17,6 @@ export default function Loading() {
           <h2 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
             Loading...
           </h2>
-          <p className="text-gray-600 dark:text-gray-300">
-            Please wait while we prepare your content
-          </p>
         </div>
 
         {/* Animated Dots */}
