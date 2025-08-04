@@ -2,11 +2,7 @@
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactForm from "@/components/ContactForm";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { isOpen?: string };
-}) {
+export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Navigation */}
