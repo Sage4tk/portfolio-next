@@ -1,353 +1,489 @@
-import Head from "next/head";
-// import { useState } from "react";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactForm from "@/components/ContactForm";
+import ClientAnimations from "@/components/ClientAnimations";
+import Hero from "@/components/Hero";
+
+const SKILLS = [
+  { name: "React", abbr: "⚛", color: "#61dafb", category: "Frontend" },
+  { name: "Next.js", abbr: "▲", color: "#ffffff", category: "Frontend" },
+  { name: "TypeScript", abbr: "TS", color: "#3178c6", category: "Language" },
+  { name: "React Native", abbr: "RN", color: "#61dafb", category: "Mobile" },
+  { name: "Tailwind CSS", abbr: "TW", color: "#38bdf8", category: "Styling" },
+  { name: "Node.js", abbr: "⬢", color: "#6cc24a", category: "Backend" },
+  { name: "Firebase", abbr: "🔥", color: "#ffca28", category: "Backend" },
+  { name: "Supabase", abbr: "⚡", color: "#3ecf8e", category: "Backend" },
+  { name: "AWS", abbr: "☁", color: "#ff9900", category: "Cloud" },
+  { name: "Google Cloud", abbr: "G", color: "#4285f4", category: "Cloud" },
+  { name: "SQL", abbr: "SQL", color: "#00758f", category: "Database" },
+  { name: "NoSQL", abbr: "{}", color: "#4db33d", category: "Database" },
+];
+
+const ABOUT_FACTS = [
+  { label: "Based in", value: "Dubai, UAE 🇦🇪" },
+  { label: "Experience", value: "3+ Years" },
+  { label: "Featured in", value: "Gitex & Gulf News" },
+  { label: "Focus", value: "Web & Mobile" },
+];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-800/20 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-xl font-semibold text-gray-900 dark:text-white">
-              Timothy Timbol
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a
-                href="#work"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                Work
-              </a>
-              <a
-                href="#about"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="#skills"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                Skills
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                Contact
-              </a>
+    <div style={{ background: "var(--bg)", color: "var(--text)" }}>
+      <ClientAnimations />
+
+      {/* ── Navigation ──────────────────────────────────── */}
+      <nav
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          borderBottom: "1px solid var(--border)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          background: "rgba(3,3,3,0.8)",
+        }}
+      >
+        <div
+          style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: "64px",
+            }}
+          >
+            {/* Logo */}
+            <span
+              className="font-mono"
+              style={{ color: "var(--text)", fontSize: "0.85rem", letterSpacing: "0.05em" }}
+            >
+              <span style={{ color: "var(--accent)" }}>{">"}</span>{" "}
+              timothy<span style={{ color: "var(--accent)" }}>.</span>dev
+            </span>
+
+            {/* Links */}
+            <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+              {["work", "about", "skills", "contact"].map((section) => (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  className="nav-link"
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {section}
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-light text-gray-900 dark:text-white mb-6 tracking-tight">
-            Hello, I'm{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Timothy Timbol
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            A passionate developer creating beautiful digital experiences with
-            clean code and thoughtful design based in Dubai, United Arab
-            Emirates
-            <img
-              src="https://flagcdn.com/w40/ae.png"
-              alt="UAE Flag"
-              width="40"
-              height="30"
-              className="inline-block ml-2"
-              style={{ borderRadius: "2px" }}
-            />
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="#work"
-              className="bg-black dark:bg-white text-white dark:text-black px-8 py-3 rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-200"
-            >
-              View My Work
-            </a>
-            <a
-              href="#contact"
-              className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white px-8 py-3 rounded-full font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200"
-            >
-              Get In Touch
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ── Hero ────────────────────────────────────────── */}
+      <Hero />
 
-      {/* Featured Work Section */}
+      {/* ── Featured Work ───────────────────────────────── */}
       <ProjectsSection />
 
-      {/* About Section */}
-      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-950" id="about">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8">
-            About Me
+      {/* ── About ───────────────────────────────────────── */}
+      <section
+        id="about"
+        style={{
+          padding: "8rem 1.5rem",
+          borderTop: "1px solid var(--border)",
+        }}
+      >
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+          <div className="reveal" style={{ marginBottom: "1rem" }}>
+            <span className="section-label">Who I Am</span>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "4rem",
+              alignItems: "start",
+            }}
+          >
+            {/* Statement */}
+            <div>
+              <h2
+                className="font-display reveal"
+                style={{
+                  fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                  lineHeight: 1.0,
+                  color: "var(--text)",
+                  marginBottom: "2rem",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                I BUILD
+                <br />
+                DIGITAL
+                <br />
+                <span className="text-gradient">EXPERIENCES</span>
+                <br />
+                THAT MATTER.
+              </h2>
+
+              <p
+                className="reveal"
+                style={{
+                  color: "var(--muted)",
+                  lineHeight: 1.8,
+                  fontSize: "1rem",
+                  maxWidth: "42ch",
+                }}
+              >
+                I&apos;m a passionate developer with 3 years of experience
+                crafting beautiful, performant web and mobile applications. My
+                work has been featured at prestigious events like{" "}
+                <strong style={{ color: "var(--text)" }}>Gitex</strong> and
+                covered by{" "}
+                <strong style={{ color: "var(--text)" }}>Gulf News</strong>,
+                demonstrating real impact in the tech industry.
+              </p>
+
+              <p
+                className="reveal"
+                style={{
+                  color: "var(--muted)",
+                  lineHeight: 1.8,
+                  fontSize: "1rem",
+                  maxWidth: "42ch",
+                  marginTop: "1.25rem",
+                }}
+              >
+                I believe great software isn&apos;t just functional — it&apos;s
+                elegant, fast, and a pleasure to use. Every line of code I write
+                reflects that philosophy.
+              </p>
+            </div>
+
+            {/* Fact grid */}
+            <div>
+              <div
+                className="reveal-group"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "1px",
+                  border: "1px solid var(--border)",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                }}
+              >
+                {ABOUT_FACTS.map(({ label, value }) => (
+                  <div
+                    key={label}
+                    className="reveal"
+                    style={{
+                      padding: "1.75rem",
+                      background: "var(--surface)",
+                      borderRight: "1px solid var(--border)",
+                      borderBottom: "1px solid var(--border)",
+                    }}
+                  >
+                    <div
+                      className="font-mono"
+                      style={{
+                        color: "var(--muted)",
+                        fontSize: "0.65rem",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.15em",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      {label}
+                    </div>
+                    <div style={{ color: "var(--text)", fontWeight: 500 }}>
+                      {value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Featured in badges */}
+              <div className="reveal" style={{ marginTop: "1.5rem" }}>
+                <div
+                  className="font-mono"
+                  style={{
+                    color: "var(--muted)",
+                    fontSize: "0.65rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.15em",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  As seen in
+                </div>
+                <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                  {["Gitex Global", "Gulf News"].map((badge) => (
+                    <span
+                      key={badge}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        padding: "0.375rem 0.875rem",
+                        background: "var(--surface)",
+                        border: "1px solid var(--border)",
+                        borderRadius: "4px",
+                        fontSize: "0.8rem",
+                        color: "var(--text)",
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: "6px",
+                          height: "6px",
+                          borderRadius: "50%",
+                          background: "var(--accent)",
+                          display: "inline-block",
+                        }}
+                      />
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Skills ──────────────────────────────────────── */}
+      <section
+        id="skills"
+        style={{
+          padding: "8rem 1.5rem",
+          borderTop: "1px solid var(--border)",
+          background: "var(--surface)",
+        }}
+      >
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+          <div className="reveal" style={{ marginBottom: "1rem" }}>
+            <span className="section-label">Expertise</span>
+          </div>
+          <h2
+            className="font-display reveal"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              color: "var(--text)",
+              marginBottom: "3.5rem",
+              letterSpacing: "0.02em",
+            }}
+          >
+            TECHNOLOGIES I WORK WITH
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-12">
-            I'm a developer with 3 years of experience who believes in the power
-            of clean, efficient code and beautiful design. With expertise in
-            modern web technologies, I create digital experiences that are both
-            functional and delightful to use. I have been featured in
-            prestigious events and publications such as <strong>Gitex</strong>{" "}
-            and <strong>Gulf News</strong>, showcasing my contributions to the
-            tech industry.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-xl">💻</span>
+
+          <div
+            className="reveal-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
+              gap: "0.75rem",
+            }}
+          >
+            {SKILLS.map(({ name, abbr, color, category }) => (
+              <div key={name} className="reveal">
+                <div className="skill-card" data-tilt>
+                  {/* Category badge */}
+                  <div
+                    className="font-mono"
+                    style={{
+                      fontSize: "0.6rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.15em",
+                      color: "var(--muted)",
+                      marginBottom: "0.875rem",
+                    }}
+                  >
+                    {category}
+                  </div>
+
+                  {/* Icon */}
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "8px",
+                      background: `${color}18`,
+                      border: `1px solid ${color}30`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "0.75rem",
+                      fontWeight: "700",
+                      color: color,
+                      marginBottom: "0.875rem",
+                      fontFamily: "var(--font-space-mono), monospace",
+                    }}
+                  >
+                    {abbr}
+                  </div>
+
+                  <div
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "0.9rem",
+                      color: "var(--text)",
+                    }}
+                  >
+                    {name}
+                  </div>
+                </div>
               </div>
-              <h3 className="font-medium text-gray-900 dark:text-white mb-2">
-                Development
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Modern web technologies
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-xl">🎨</span>
-              </div>
-              <h3 className="font-medium text-gray-900 dark:text-white mb-2">
-                Design
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Clean and intuitive interfaces
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-xl">⚡</span>
-              </div>
-              <h3 className="font-medium text-gray-900 dark:text-white mb-2">
-                Performance
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Fast and optimized solutions
-              </p>
+            ))}
+          </div>
+
+          {/* Tech marquee */}
+          <div
+            className="reveal"
+            style={{
+              marginTop: "4rem",
+              overflow: "hidden",
+              borderTop: "1px solid var(--border)",
+              borderBottom: "1px solid var(--border)",
+              padding: "1.25rem 0",
+            }}
+          >
+            <div
+              className="animate-marquee"
+              style={{
+                display: "flex",
+                gap: "3rem",
+                width: "max-content",
+                alignItems: "center",
+              }}
+            >
+              {[...SKILLS, ...SKILLS].map(({ name, color }, i) => (
+                <span
+                  key={`${name}-${i}`}
+                  className="font-mono"
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "var(--muted)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    whiteSpace: "nowrap",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "5px",
+                      height: "5px",
+                      borderRadius: "50%",
+                      background: color,
+                      display: "inline-block",
+                      flexShrink: 0,
+                    }}
+                  />
+                  {name}
+                </span>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section className="py-20 px-6" id="skills">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8">
-              Technologies I Work With
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              I stay up-to-date with the latest technologies to deliver modern,
-              scalable solutions.
-            </p>
+      {/* ── Contact ─────────────────────────────────────── */}
+      <section
+        id="contact"
+        style={{
+          padding: "8rem 1.5rem",
+          borderTop: "1px solid var(--border)",
+        }}
+      >
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <div className="reveal" style={{ marginBottom: "1rem" }}>
+            <span className="section-label">Get In Touch</span>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {/* Frontend */}
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-blue-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                <span className="text-white font-bold">⚛️</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                React
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Modern UI library
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-700 transition-colors">
-                <span className="text-white font-bold">TS</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                TypeScript
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Type-safe JavaScript
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-black dark:hover:border-white transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-black dark:bg-white rounded-xl mb-4 flex items-center justify-center group-hover:bg-gray-800 dark:group-hover:bg-gray-200 transition-colors">
-                <span className="text-white dark:text-black font-bold">▲</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Next.js
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                React framework
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-blue-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                <span className="text-white font-bold">RN</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                React Native
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Mobile development
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-cyan-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-cyan-600 transition-colors">
-                <span className="text-white font-bold">🎨</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Tailwind CSS
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Utility-first CSS
-              </p>
-            </div>
-
-            {/* Backend & Database */}
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-green-600 rounded-xl mb-4 flex items-center justify-center group-hover:bg-green-700 transition-colors">
-                <span className="text-white font-bold">⚡</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Supabase
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Backend as a service
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-orange-300 dark:hover:border-orange-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-orange-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-orange-600 transition-colors">
-                <span className="text-white font-bold">🔥</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Firebase
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Google's platform
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-yellow-300 dark:hover:border-yellow-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-yellow-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-yellow-600 transition-colors">
-                <span className="text-white font-bold">☁️</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                AWS
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Cloud computing
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-blue-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                <span className="text-white font-bold">GCP</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Google Cloud
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Cloud platform
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-green-300 dark:hover:border-green-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-green-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-green-600 transition-colors">
-                <span className="text-white font-bold">⚙️</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Node.js
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Backend runtime
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl mb-4 flex items-center justify-center group-hover:bg-blue-700 transition-colors">
-                <span className="text-white font-bold">SQL</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                SQL
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Relational databases
-              </p>
-            </div>
-
-            <div className="group p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-purple-300 dark:hover:border-purple-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <div className="w-12 h-12 bg-purple-500 rounded-xl mb-4 flex items-center justify-center group-hover:bg-purple-600 transition-colors">
-                <span className="text-white font-bold">📄</span>
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                NoSQL
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Document databases
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-20 px-6" id="contact">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8">
-            Let's Work Together
+          <h2
+            className="font-display reveal"
+            style={{
+              fontSize: "clamp(2.5rem, 7vw, 5rem)",
+              lineHeight: 1.0,
+              color: "var(--text)",
+              marginBottom: "1.5rem",
+              letterSpacing: "0.02em",
+            }}
+          >
+            LET&apos;S BUILD
+            <br />
+            <span className="text-gradient">SOMETHING</span>
+            <br />
+            TOGETHER.
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-12">
-            Have a project in mind? I'd love to hear about it and discuss how we
-            can bring your ideas to life.
+          <p
+            className="reveal"
+            style={{
+              color: "var(--muted)",
+              lineHeight: 1.8,
+              marginBottom: "3rem",
+            }}
+          >
+            Have a project in mind? I&apos;d love to hear about it. Send me a
+            message and let&apos;s discuss how I can help bring your ideas to
+            life.
           </p>
-          <ContactForm />
+          <div className="reveal">
+            <ContactForm />
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-600 dark:text-gray-300 mb-4 md:mb-0">
-              © 2025 Timothy Zack Timbol. All rights reserved.
-            </div>
-            <div className="flex space-x-6">
+      {/* ── Footer ──────────────────────────────────────── */}
+      <footer
+        style={{
+          borderTop: "1px solid var(--border)",
+          padding: "2.5rem 1.5rem",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1280px",
+            margin: "0 auto",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <span
+            className="font-mono"
+            style={{ color: "var(--muted)", fontSize: "0.75rem" }}
+          >
+            © 2025 Timothy Zack Timbol
+          </span>
+
+          <div style={{ display: "flex", gap: "1.5rem" }}>
+            {[
+              { label: "GitHub", href: "https://github.com/Sage4tk" },
+              {
+                label: "LinkedIn",
+                href: "https://www.linkedin.com/in/timothy-zack-timbol-90b5271b6/",
+              },
+              { label: "Instagram", href: "https://www.instagram.com/cactusz4ck" },
+            ].map(({ label, href }) => (
               <a
-                href="https://github.com/Sage4tk#"
+                key={label}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="nav-link font-mono"
+                style={{ fontSize: "0.75rem" }}
               >
-                GitHub
+                {label}
               </a>
-              <a
-                href="https://www.linkedin.com/in/timothy-zack-timbol-90b5271b6/#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://www.instagram.com/cactusz4ck"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                Instagram
-              </a>
-            </div>
+            ))}
           </div>
         </div>
       </footer>

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects - Your Portfolio",
-  description: "Explore my projects and technical work",
+  title: "Projects — Timothy Timbol",
+  description: "A collection of web and mobile projects built by Timothy Timbol.",
 };
 
 export default function ProjectsLayout({

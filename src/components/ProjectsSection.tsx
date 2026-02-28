@@ -3,12 +3,10 @@ import { Project } from "@/types/project";
 import Image from "next/image";
 import Link from "next/link";
 
-// Server component that fetches and caches featured projects
 export default async function ProjectsSection() {
   let projects: Project[];
 
   try {
-    // Fetch featured projects
     projects = await getFeaturedProjects();
   } catch (error) {
     console.error("Error fetching featured projects:", error);
@@ -17,33 +15,52 @@ export default async function ProjectsSection() {
 
   if (projects.length === 0) {
     return (
-      <section className="py-20 px-6" id="work">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-16 text-center">
-            Featured Work
+      <section
+        id="work"
+        style={{
+          padding: "8rem 1.5rem",
+          borderTop: "1px solid var(--border)",
+        }}
+      >
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+          <div className="reveal" style={{ marginBottom: "1rem" }}>
+            <span className="section-label">Featured Work</span>
+          </div>
+          <h2
+            className="font-display reveal"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              color: "var(--text)",
+              marginBottom: "4rem",
+              letterSpacing: "0.02em",
+            }}
+          >
+            SELECTED PROJECTS
           </h2>
-          <div className="text-center py-12">
-            <div className="text-gray-400 dark:text-gray-600 mb-4">
-              <svg
-                className="w-16 h-16 mx-auto mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
+          <div
+            className="reveal"
+            style={{
+              border: "1px solid var(--border)",
+              borderRadius: "8px",
+              padding: "4rem",
+              textAlign: "center",
+              background: "var(--surface)",
+            }}
+          >
+            <div
+              className="font-mono"
+              style={{
+                color: "var(--muted)",
+                fontSize: "0.75rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginBottom: "0.75rem",
+              }}
+            >
+              Coming Soon
             </div>
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
-              Projects coming soon
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              I'm currently working on some exciting projects that will be
-              showcased here.
+            <p style={{ color: "var(--muted)", fontSize: "0.95rem" }}>
+              Exciting projects are being prepared for showcase.
             </p>
           </div>
         </div>
@@ -52,100 +69,210 @@ export default async function ProjectsSection() {
   }
 
   return (
-    <section className="py-20 px-6" id="work">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-16 text-center">
-          Featured Work
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Link
-              key={project.id}
-              href={`/projects/${project.id}`}
-              className="group cursor-pointer"
+    <section
+      id="work"
+      style={{
+        padding: "8rem 1.5rem",
+        borderTop: "1px solid var(--border)",
+      }}
+    >
+      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+        {/* Header */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            marginBottom: "3.5rem",
+            flexWrap: "wrap",
+            gap: "1.5rem",
+          }}
+        >
+          <div>
+            <div className="reveal" style={{ marginBottom: "1rem" }}>
+              <span className="section-label">Featured Work</span>
+            </div>
+            <h2
+              className="font-display reveal"
+              style={{
+                fontSize: "clamp(2rem, 5vw, 3.5rem)",
+                color: "var(--text)",
+                letterSpacing: "0.02em",
+              }}
             >
-              <div className="bg-gray-100 dark:bg-gray-900 rounded-2xl overflow-hidden h-64 mb-6 transition-all duration-300 group-hover:scale-105">
-                {project.imageUrl ? (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-20 group-hover:opacity-30 transition-opacity flex items-center justify-center">
-                    <span className="text-white text-4xl">📱</span>
-                  </div>
-                )}
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 line-clamp-3">
-                {project.description}
-              </p>
+              SELECTED PROJECTS
+            </h2>
+          </div>
 
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.techStack.slice(0, 3).map((tech: string) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {project.techStack.length > 3 && (
-                  <span className="px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-full">
-                    +{project.techStack.length - 3} more
-                  </span>
-                )}
-              </div>
-
-              {/* View Project Link */}
-              <div className="flex items-center text-blue-600 dark:text-blue-400 text-sm font-medium group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
-                <span>View Project</span>
-                <svg
-                  className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* View All Projects Link */}
-        <div className="text-center mt-12">
           <Link
             href="/projects"
-            className="inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
+            className="reveal btn-outline"
+            style={{ fontSize: "0.8rem" }}
           >
-            <span>View All Projects</span>
+            View All
             <svg
-              className="w-5 h-5"
+              width="14"
+              height="14"
               fill="none"
               stroke="currentColor"
+              strokeWidth="2"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
+        </div>
+
+        {/* Grid */}
+        <div
+          className="reveal-group"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gap: "1.25rem",
+          }}
+        >
+          {projects.map((project, idx) => (
+            <div
+              key={project.id}
+              className="reveal"
+              style={{ transitionDelay: `${idx * 0.06}s` }}
+            >
+            <Link
+              href={`/projects/${project.id}`}
+              className="project-card"
+              data-tilt
+              style={{
+                display: "block",
+                textDecoration: "none",
+              }}
+            >
+              {/* Image */}
+              <div
+                style={{
+                  position: "relative",
+                  height: "220px",
+                  overflow: "hidden",
+                  borderBottom: "1px solid var(--border)",
+                }}
+              >
+                {project.imageUrl ? (
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    style={{ transition: "transform 0.5s cubic-bezier(0.16,1,0.3,1)" }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      background:
+                        "linear-gradient(135deg, rgba(184,255,71,0.08) 0%, rgba(71,184,255,0.08) 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span
+                      className="font-display"
+                      style={{
+                        fontSize: "3rem",
+                        color: "var(--muted-2)",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      {project.title.slice(0, 2).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+
+                {/* Overlay on hover */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(3,3,3,0.7) 0%, transparent 50%)",
+                  }}
+                />
+              </div>
+
+              {/* Content */}
+              <div style={{ padding: "1.5rem" }}>
+                {/* Tech tags */}
+                <div
+                  style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem", marginBottom: "1rem" }}
+                >
+                  {project.techStack.slice(0, 3).map((tech: string) => (
+                    <span key={tech} className="tech-tag">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.techStack.length > 3 && (
+                    <span className="tech-tag">+{project.techStack.length - 3}</span>
+                  )}
+                </div>
+
+                <h3
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: 600,
+                    color: "var(--text)",
+                    marginBottom: "0.5rem",
+                    transition: "color 0.2s",
+                  }}
+                >
+                  {project.title}
+                </h3>
+
+                <p
+                  style={{
+                    color: "var(--muted)",
+                    fontSize: "0.875rem",
+                    lineHeight: 1.7,
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    marginBottom: "1.25rem",
+                  }}
+                >
+                  {project.description}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "var(--accent)",
+                    fontSize: "0.8rem",
+                    fontWeight: 600,
+                    fontFamily: "var(--font-mono)",
+                    letterSpacing: "0.05em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  View Project
+                  <svg
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    style={{ transition: "transform 0.2s" }}
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+            </div>
+          ))}
         </div>
       </div>
     </section>
