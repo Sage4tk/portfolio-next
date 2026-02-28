@@ -486,6 +486,15 @@ body {
 .nav-link:hover { color: var(--text); }
 .nav-link:hover::after { transform: scaleX(1); }
 
+/* Burger nav — responsive */
+@media (max-width: 639px) {
+  .nav-desktop-links { display: none !important; }
+  .nav-burger { display: flex !important; }
+}
+@media (min-width: 640px) {
+  .nav-mobile-drawer { display: none !important; }
+}
+
 /* Number counter */
 .counter-number {
   font-family: var(--font-display), sans-serif;

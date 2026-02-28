@@ -291,6 +291,19 @@ export default function AllProjectsPage() {
                     href={`/projects/${project.id}`}
                     className="project-card"
                     style={{ display: "block", textDecoration: "none" }}
+                    onMouseMove={(e) => {
+                      const card = e.currentTarget as HTMLAnchorElement;
+                      const rect = card.getBoundingClientRect();
+                      const x = e.clientX - rect.left;
+                      const y = e.clientY - rect.top;
+                      const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -6;
+                      const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
+                      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLAnchorElement).style.transform =
+                        "perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+                    }}
                   >
                     {/* Image */}
                     <div

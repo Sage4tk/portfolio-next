@@ -2,6 +2,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ContactForm from "@/components/ContactForm";
 import ClientAnimations from "@/components/ClientAnimations";
 import Hero from "@/components/Hero";
+import NavBar from "@/components/NavBar";
 
 const SKILLS = [
   { name: "React", abbr: "⚛", color: "#61dafb", category: "Frontend" },
@@ -31,55 +32,7 @@ export default function Home() {
       <ClientAnimations />
 
       {/* ── Navigation ──────────────────────────────────── */}
-      <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          borderBottom: "1px solid var(--border)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-          background: "rgba(3,3,3,0.8)",
-        }}
-      >
-        <div
-          style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              height: "64px",
-            }}
-          >
-            {/* Logo */}
-            <span
-              className="font-mono"
-              style={{ color: "var(--text)", fontSize: "0.85rem", letterSpacing: "0.05em" }}
-            >
-              <span style={{ color: "var(--accent)" }}>{">"}</span>{" "}
-              timothy<span style={{ color: "var(--accent)" }}>.</span>dev
-            </span>
-
-            {/* Links */}
-            <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-              {["work", "about", "skills", "contact"].map((section) => (
-                <a
-                  key={section}
-                  href={`#${section}`}
-                  className="nav-link"
-                  style={{ textTransform: "capitalize" }}
-                >
-                  {section}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavBar />
 
       {/* ── Hero ────────────────────────────────────────── */}
       <Hero />
