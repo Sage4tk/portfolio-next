@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const ROLES = [
   "Full Stack Developer",
@@ -38,7 +39,9 @@ function TypewriterRole() {
     const speed = isDeleting ? 40 : 70;
     const t = setTimeout(() => {
       setDisplayed(
-        isDeleting ? current.slice(0, displayed.length - 1) : current.slice(0, displayed.length + 1)
+        isDeleting
+          ? current.slice(0, displayed.length - 1)
+          : current.slice(0, displayed.length + 1),
       );
     }, speed);
 
@@ -74,8 +77,16 @@ export default function Hero() {
         aria-hidden
       >
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <path d="M120 0 L120 120 L0 120" stroke="rgba(184,255,71,0.4)" strokeWidth="1" />
-          <path d="M100 0 L100 100 L0 100" stroke="rgba(184,255,71,0.2)" strokeWidth="1" />
+          <path
+            d="M120 0 L120 120 L0 120"
+            stroke="rgba(184,255,71,0.4)"
+            strokeWidth="1"
+          />
+          <path
+            d="M100 0 L100 100 L0 100"
+            stroke="rgba(184,255,71,0.2)"
+            strokeWidth="1"
+          />
         </svg>
       </div>
       <div
@@ -83,7 +94,11 @@ export default function Hero() {
         aria-hidden
       >
         <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-          <path d="M0 80 L0 0 L80 0" stroke="rgba(71,184,255,0.4)" strokeWidth="1" />
+          <path
+            d="M0 80 L0 0 L80 0"
+            stroke="rgba(71,184,255,0.4)"
+            strokeWidth="1"
+          />
         </svg>
       </div>
 
@@ -103,11 +118,11 @@ export default function Hero() {
             <div className="animate-fade-up delay-2 mb-4">
               <span className="font-mono text-[var(--muted)] text-sm tracking-widest uppercase">
                 Dubai, UAE{" "}
-                <img
-                  src="https://flagcdn.com/w20/ae.png"
-                  alt="UAE"
-                  width="16"
-                  height="12"
+                <Image
+                  src="/uae-flag.webp"
+                  alt="UAE flag"
+                  width={20}
+                  height={14}
                   className="inline-block ml-1 rounded-sm"
                   style={{ verticalAlign: "middle" }}
                 />
@@ -149,8 +164,19 @@ export default function Hero() {
             <div className="animate-fade-up delay-7 flex flex-wrap gap-4">
               <a href="#work" className="btn-primary">
                 View My Work
-                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                <svg
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M5 12h14M12 5l7 7-7 7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </a>
               <a href="#contact" className="btn-outline">
@@ -166,7 +192,10 @@ export default function Hero() {
                   label: "LinkedIn",
                   href: "https://www.linkedin.com/in/timothy-zack-timbol-90b5271b6/",
                 },
-                { label: "Instagram", href: "https://www.instagram.com/cactusz4ck" },
+                {
+                  label: "Instagram",
+                  href: "https://www.instagram.com/cactusz4ck",
+                },
               ].map(({ label, href }) => (
                 <a
                   key={label}
@@ -190,7 +219,9 @@ export default function Hero() {
               <div className="space-y-8">
                 <div>
                   <div className="counter-number">
-                    <span data-counter="3" data-counter-suffix="+">0</span>
+                    <span data-counter="3" data-counter-suffix="+">
+                      0
+                    </span>
                   </div>
                   <div className="font-mono text-[var(--muted)] text-xs tracking-widest uppercase mt-1">
                     Years Experience
@@ -199,7 +230,9 @@ export default function Hero() {
                 <hr className="divider" />
                 <div>
                   <div className="counter-number">
-                    <span data-counter="10" data-counter-suffix="+">0</span>
+                    <span data-counter="10" data-counter-suffix="+">
+                      0
+                    </span>
                   </div>
                   <div className="font-mono text-[var(--muted)] text-xs tracking-widest uppercase mt-1">
                     Projects Shipped
@@ -208,7 +241,9 @@ export default function Hero() {
                 <hr className="divider" />
                 <div>
                   <div className="counter-number">
-                    <span data-counter="2" data-counter-suffix="x">0</span>
+                    <span data-counter="2" data-counter-suffix="x">
+                      0
+                    </span>
                   </div>
                   <div className="font-mono text-[var(--muted)] text-xs tracking-widest uppercase mt-1">
                     Press Features
