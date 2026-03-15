@@ -28,7 +28,8 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
   const updatedDate =
     project.updatedAt &&
     project.createdAt &&
-    new Date(project.updatedAt).getTime() !== new Date(project.createdAt).getTime()
+    new Date(project.updatedAt).getTime() !==
+      new Date(project.createdAt).getTime()
       ? new Intl.DateTimeFormat("en-US", {
           year: "numeric",
           month: "long",
@@ -38,7 +39,13 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
       : null;
 
   return (
-    <div style={{ background: "var(--bg)", color: "var(--text)", minHeight: "100vh" }}>
+    <div
+      style={{
+        background: "var(--bg)",
+        color: "var(--text)",
+        minHeight: "100vh",
+      }}
+    >
       <ClientAnimations />
 
       {/* ── Nav ─────────────────────────────────────────── */}
@@ -55,7 +62,9 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
           background: "rgba(3,3,3,0.85)",
         }}
       >
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}>
+        <div
+          style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
+        >
           <div
             style={{
               display: "flex",
@@ -197,7 +206,10 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
           }}
         >
           {/* Category / type label */}
-          <div className="animate-fade-up delay-1" style={{ marginBottom: "1.25rem" }}>
+          <div
+            className="animate-fade-up delay-1"
+            style={{ marginBottom: "1.25rem" }}
+          >
             <span className="section-label">Project</span>
           </div>
 
@@ -230,7 +242,13 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
       </section>
 
       {/* ── Content ─────────────────────────────────────── */}
-      <main style={{ maxWidth: "1280px", margin: "0 auto", padding: "5rem 1.5rem 8rem" }}>
+      <main
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "5rem 1.5rem 8rem",
+        }}
+      >
         <div
           style={{
             display: "grid",
@@ -372,7 +390,13 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                   >
                     Tech Stack
                   </span>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "0.375rem",
+                    }}
+                  >
                     {project.techStack.map((tech) => (
                       <span key={tech} className="tech-tag">
                         {tech}
@@ -495,7 +519,10 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                 }}
               />
 
-              <div className="section-label" style={{ marginBottom: "1.25rem" }}>
+              <div
+                className="section-label"
+                style={{ marginBottom: "1.25rem" }}
+              >
                 Work Together
               </div>
 
@@ -525,7 +552,9 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                 Let&apos;s build something great together.
               </p>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem" }}>
+              <div
+                style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem" }}
+              >
                 <button
                   onClick={() => setContactOpen(true)}
                   className="btn-primary"
@@ -547,7 +576,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                   </svg>
                 </button>
                 <button
-                  onClick={() => router.push("/#work")}
+                  onClick={() => router.push("/projects")}
                   className="btn-outline"
                 >
                   More Projects
@@ -559,7 +588,12 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
       </main>
 
       {/* ── Footer ──────────────────────────────────────── */}
-      <footer style={{ borderTop: "1px solid var(--border)", padding: "2.5rem 1.5rem" }}>
+      <footer
+        style={{
+          borderTop: "1px solid var(--border)",
+          padding: "2.5rem 1.5rem",
+        }}
+      >
         <div
           style={{
             maxWidth: "1280px",
@@ -650,7 +684,10 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
               }}
             >
               <div>
-                <div className="section-label" style={{ marginBottom: "0.5rem" }}>
+                <div
+                  className="section-label"
+                  style={{ marginBottom: "0.5rem" }}
+                >
                   Contact
                 </div>
                 <h3
